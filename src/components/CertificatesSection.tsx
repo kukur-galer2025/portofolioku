@@ -41,7 +41,7 @@ function MediaPreview({ fileUrl, title }: { fileUrl: string; title: string }) {
         <div className="absolute inset-0 z-10 pointer-events-none" />
         {isImage ? (
           <img 
-            src={fileUrl} 
+            src={`${fileUrl}?q=80&fm=webp&w=800`} 
             alt={title}
             loading="lazy"
             onLoad={() => setLoaded(true)}

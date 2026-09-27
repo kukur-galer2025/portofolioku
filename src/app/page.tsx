@@ -109,7 +109,7 @@ export default function Home() {
                   <p className="text-sm font-medium text-slate-200/60">Kumpulan aplikasi nyata yang dibangun untuk memecahkan masalah.</p>
                 </div>
                 <Link href="/projects" className="flex-1 bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-xl flex items-center justify-center overflow-hidden relative group cursor-pointer shadow-inner">
-                  <img src="https://cdn.sanity.io/images/ijthr5am/production/c22d6a34815b378e80d7fa55e19fa94a9bfb6274-1896x877.png" alt="Proyek" className="absolute inset-0 w-full h-full object-cover object-top opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700" />
+                  <img src="https://cdn.sanity.io/images/ijthr5am/production/c22d6a34815b378e80d7fa55e19fa94a9bfb6274-1896x877.png?q=80&fm=webp&w=800" alt="Proyek" className="absolute inset-0 w-full h-full object-cover object-top opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700" />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10"></div>
                   <div className="absolute inset-0 flex items-center justify-center z-20">
                      <span className="bg-gradient-to-r from-cyan-500 to-indigo-500 text-white font-bold text-sm px-5 py-2.5 rounded-full group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] transition-all">Lihat Proyek</span>

@@ -29,7 +29,7 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
           <div className="relative w-full aspect-video overflow-hidden border-b border-white/5 bg-[#0a0f1c]">
             {project.imageUrl ? (
               <img 
-                src={project.imageUrl} 
+                src={`${project.imageUrl}?q=80&fm=webp&w=800`} 
                 alt={project.title}
                 className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
               />
