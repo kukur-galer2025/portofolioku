@@ -26,7 +26,6 @@ export default function Contact() {
       url: "https://wa.me/6287864270595",
       icon: FaWhatsapp,
       color: "bg-[#25D366]",
-      color: "bg-[#25D366]",
     },
   ];
 
