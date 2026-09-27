@@ -93,7 +93,7 @@ export default function CertificatesSection({ certificates }: { certificates: Ce
   }, [mainCategory, allAvailableCategories]);
 
   // Handle Main Category click
-  const handleMainCategoryChange = (newMainCategory: "Semua" | "Hard Skills" | "Soft Skills") => {
+  const handleMainCategoryChange = (newMainCategory: "Semua" | "Hard Skills" | "Soft Skills" | "Prestasi") => {
     setMainCategory(newMainCategory);
     setSubCategory("Semua"); // Reset sub category when changing main category
     setVisibleCount(9); // Reset pagination

@@ -4,7 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import MobileHeader from "@/components/MobileHeader";
 import { 
   User, Code, MapPin, GraduationCap, Briefcase, BookOpen, FileText,
-  Layout, Server, Smartphone, Database, PenTool, GitBranch, Github as GithubIcon, Trello
+  Layout, Server, Smartphone, Database, PenTool, GitBranch
 } from "lucide-react";
 import { 
   SiNextdotjs, SiReact, SiVuedotjs, SiDocker, SiLaravel, 
