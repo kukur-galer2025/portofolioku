@@ -57,8 +57,14 @@ export default function Contact() {
       });
 
       if (response.ok) {
-        setSubmitStatus("success");
-        (e.target as HTMLFormElement).reset();
+        const result = await response.json();
+        if (result.success === "true" || result.success === true) {
+          setSubmitStatus("success");
+          (e.target as HTMLFormElement).reset();
+        } else {
+          setSubmitStatus("error");
+          console.error("FormSubmit Error:", result.message);
+        }
       } else {
         setSubmitStatus("error");
       }
