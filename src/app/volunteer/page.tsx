@@ -8,6 +8,12 @@ import { FileText, ExternalLink, Calendar } from "lucide-react";
 export default function Volunteer() {
   const volunteerData = [
     {
+      title: "Staff Publik & Relasi",
+      date: "2026",
+      category: "Organisasi",
+      file: "/panitia/sertifikat_organisasi.pdf"
+    },
+    {
       title: "Webinar: Cara Penulisan Proposal Hibah Penelitian Internasional",
       date: "01 Agt 2026",
       category: "Webinar Series ASASI",
