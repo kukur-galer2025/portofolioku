@@ -3,8 +3,9 @@
 import Sidebar from "@/components/Sidebar";
 import MobileHeader from "@/components/MobileHeader";
 import { motion } from "framer-motion";
-import { Send, Mail, MessageSquare } from "lucide-react";
+import { Send, Mail, MessageSquare, CheckCircle, AlertCircle } from "lucide-react";
 import { FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { useState } from "react";
 
 export default function Contact() {
   const socials = [
@@ -25,8 +26,49 @@ export default function Contact() {
       url: "https://wa.me/6287864270595",
       icon: FaWhatsapp,
       color: "bg-[#25D366]",
+      color: "bg-[#25D366]",
     },
   ];
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/primadzakyhibatulloh@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+          _subject: "Pesan Baru dari Halaman Kontak Portfolio!"
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="flex min-h-screen bg-transparent">
@@ -96,10 +138,7 @@ export default function Contact() {
                 Punya ide proyek? Mari kita diskusikan bagaimana kita bisa berkolaborasi.
               </p>
 
-              <form action="https://formsubmit.co/primadzakyhibatulloh@gmail.com" method="POST" className="space-y-5">
-                <input type="hidden" name="_next" value="http://localhost:3000/contact" />
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_subject" value="Pesan Baru dari Halaman Kontak Portfolio!" />
+              <form onSubmit={handleSubmit} className="space-y-5">
 
                 <div>
                   <label className="block text-xs font-bold text-slate-300 mb-2 uppercase">Nama Anda</label>
@@ -143,11 +182,37 @@ export default function Contact() {
                 </div>
                 <button 
                   type="submit"
-                  className="w-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-indigo-500/50 hover:shadow-[0_0_15px_rgba(99,102,241,0.3)] text-white font-bold text-sm py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all"
+                  disabled={isSubmitting}
+                  className="w-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-indigo-500/50 hover:shadow-[0_0_15px_rgba(99,102,241,0.3)] text-white font-bold text-sm py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-4 h-4 text-indigo-400" />
-                  KIRIM PESAN
+                  {isSubmitting ? (
+                    <span className="flex items-center gap-2">
+                      <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      MENGIRIM...
+                    </span>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4 text-indigo-400" />
+                      KIRIM PESAN
+                    </>
+                  )}
                 </button>
+
+                {submitStatus === "success" && (
+                  <div className="flex items-center gap-2 text-emerald-400 bg-emerald-400/10 p-3 rounded-lg border border-emerald-400/20 text-sm font-semibold">
+                    <CheckCircle className="w-5 h-5" />
+                    Pesan berhasil terkirim! Saya akan segera membalasnya.
+                  </div>
+                )}
+                {submitStatus === "error" && (
+                  <div className="flex items-center gap-2 text-rose-400 bg-rose-400/10 p-3 rounded-lg border border-rose-400/20 text-sm font-semibold">
+                    <AlertCircle className="w-5 h-5" />
+                    Gagal mengirim pesan. Silakan coba lagi atau gunakan email.
+                  </div>
+                )}
               </form>
             </motion.div>
           </div>
